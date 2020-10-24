@@ -1,11 +1,486 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_200">
+    android:background="@color/grey_200"
+    android:paddingLeft="8dp"
+    android:paddingTop="16dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="8dp">
 
     <!-- TODO 01. Define the layout for the MainActivity here. -->
     <!-- NOTE: Remember that in order to include some GUI components you will have to use the Material library -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/headerButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/scanChip"
+                style="@style/Chip.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_chip"
+                app:chipIcon="@drawable/ic_center_focus_weak_chip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/topupChip"
+                style="@style/Chip.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top_up_chip"
+                app:chipIcon="@drawable/ic_add_circle_outline_chip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/sendChip"
+                style="@style/Chip.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_chip"
+                app:chipIcon="@drawable/ic_open_in_new_chip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/requestChip"
+                style="@style/Chip.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/request_chip"
+                app:chipIcon="@drawable/ic_open_in_new_rotated_chip" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/buyCard"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buyCardLayout"
+                style="@style/CardView.White"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="16dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/phoneIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/phone_icon_desc"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_phone_android" />
+
+                <TextView
+                    android:id="@+id/cardTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/pulsa_amp_data"
+                    android:textAllCaps="false"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/phoneIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cardSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bonus_pulsa_50"
+                    android:textColor="@color/colorAccentDark"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/cardTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+
+                <Button
+                    android:id="@+id/buynowButton"
+                    style="@style/Button.Blue.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/buy_now"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/electricityButton"
+                    style="@style/Button.Blue.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableTop="@drawable/ic_lightbulb"
+                    android:drawablePadding="0dp"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="@string/electricity"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    app:iconTint="#FFC107"
+                    app:layout_constraintEnd_toStartOf="@+id/cashoutButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phoneIcon" />
+
+                <Button
+                    android:id="@+id/seeallButton"
+                    style="@style/Button.Blue.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_more_horiz"
+                    android:drawablePadding="0dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="@string/see_all"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    app:iconTint="#FFC107"
+                    app:layout_constraintBottom_toBottomOf="@+id/gamesButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/gamesButton" />
+
+                <Button
+                    android:id="@+id/gamesButton"
+                    style="@style/Button.Blue.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_games"
+                    android:drawablePadding="0dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="@string/games"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    app:iconTint="#FFC107"
+                    app:layout_constraintBottom_toBottomOf="@+id/cashoutButton"
+                    app:layout_constraintEnd_toStartOf="@+id/seeallButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cashoutButton" />
+
+                <Button
+                    android:id="@+id/cashoutButton"
+                    style="@style/Button.Blue.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_monetization_on"
+                    android:drawablePadding="0dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="@string/cashout"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    app:iconTint="#FFC107"
+                    app:layout_constraintBottom_toBottomOf="@+id/electricityButton"
+                    app:layout_constraintEnd_toStartOf="@+id/gamesButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/electricityButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/discountToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:checkedButton="@id/noDiscountButton"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/noDiscountButton"
+                style="@style/Button.Blue.Group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/no_discount" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/discountButton"
+                style="@style/Button.Blue.Group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/discount" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/invoiceCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/invoiceLayout"
+                style="@style/CardView.White"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/invoiceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/invoice"
+                    android:textColor="@color/grey_40"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/grey_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/invoiceTitle" />
+
+                <CheckBox
+                    android:id="@+id/product1Checkbox"
+                    style="@style/CheckBox.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/product_01"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <EditText
+                    android:id="@+id/product1Price"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="numberSigned|numberDecimal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/product1Checkbox" />
+
+                <EditText
+                    android:id="@+id/product2Price"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="numberSigned|numberDecimal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/product2Checkbox" />
+
+                <EditText
+                    android:id="@+id/product3Price"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="numberSigned|numberDecimal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/product3Checkbox" />
+
+                <EditText
+                    android:id="@+id/product4Price"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:ems="10"
+                    android:inputType="numberSigned|numberDecimal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/product4Checkbox"
+                    android:importantForAutofill="no" />
+
+                <CheckBox
+                    android:id="@+id/product2Checkbox"
+                    style="@style/CheckBox.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/product_02"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/product1Checkbox" />
+
+                <CheckBox
+                    android:id="@+id/product3Checkbox"
+                    style="@style/CheckBox.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/product_03"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/product2Checkbox" />
+
+                <CheckBox
+                    android:id="@+id/product4Checkbox"
+                    style="@style/CheckBox.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/product_04"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/product3Checkbox" />
+
+                <ImageView
+                    android:id="@+id/switchIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:contentDescription="@string/switch_desc"
+                    android:rotation="45"
+                    app:layout_constraintBottom_toBottomOf="@+id/invoiceTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/invoiceTitle"
+                    app:srcCompat="@drawable/ic_swap_vert" />
+
+                <TextView
+                    android:id="@+id/dollarSign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/dollar_sign"
+                    app:layout_constraintBottom_toBottomOf="@+id/product1Price"
+                    app:layout_constraintEnd_toStartOf="@+id/product1Price"
+                    app:layout_constraintTop_toTopOf="@+id/product1Price" />
+
+                <TextView
+                    android:id="@+id/dollarSign2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/dollar_sign"
+                    app:layout_constraintBottom_toBottomOf="@+id/product2Price"
+                    app:layout_constraintEnd_toStartOf="@+id/product2Price"
+                    app:layout_constraintTop_toTopOf="@+id/product2Price" />
+
+                <TextView
+                    android:id="@+id/dolarSign3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/dollar_sign"
+                    app:layout_constraintBottom_toBottomOf="@+id/product3Price"
+                    app:layout_constraintEnd_toStartOf="@+id/product3Price"
+                    app:layout_constraintTop_toTopOf="@+id/product3Price" />
+
+                <TextView
+                    android:id="@+id/dollarSign4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/dollar_sign"
+                    app:layout_constraintBottom_toBottomOf="@+id/product4Price"
+                    app:layout_constraintEnd_toStartOf="@+id/product4Price"
+                    app:layout_constraintTop_toTopOf="@+id/product4Price" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/totalPriceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/calculateTotalButton"
+                style="@style/Button.Outlined.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:onClick="calculateTotal"
+                android:text="@string/calculate_total_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/totalTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp"
+                android:onClick="calculateTotal"
+                android:text="@string/total"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/calculateTotalButton"
+                app:layout_constraintStart_toEndOf="@+id/calculateTotalButton"
+                app:layout_constraintTop_toTopOf="@+id/calculateTotalButton" />
+
+            <TextView
+                android:id="@+id/totalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/totalTitle"
+                app:layout_constraintStart_toEndOf="@+id/totalTitle"
+                app:layout_constraintTop_toTopOf="@+id/totalTitle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
 
 </ScrollView>
